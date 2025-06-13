@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         btnView.setOnClickListener(v -> {
             Intent intent = new Intent(this, ProductsActivity.class);
             startActivity(intent);
+			//Comentario
         });
     }
 }

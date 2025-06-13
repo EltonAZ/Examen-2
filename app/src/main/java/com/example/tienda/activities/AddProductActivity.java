@@ -47,7 +47,8 @@ public class AddProductActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<Product> call, Throwable t) {
                     Toast.makeText(AddProductActivity.this, "Fallo en la conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                
+				}
             });
         });
     }
