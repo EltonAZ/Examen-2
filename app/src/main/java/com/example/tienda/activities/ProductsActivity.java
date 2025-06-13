@@ -1,40 +1,26 @@
 package com.example.tienda.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.graphics.PointKt;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.tienda.R;
 import com.example.tienda.adapters.ProductAdapter;
 import com.example.tienda.models.Product;
-import com.example.tienda.services.ProductsServices;
 import com.example.tienda.services.network.ApiService;
 import com.example.tienda.services.network.RetrofitClient;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProductsActivity extends AppCompatActivity {
-    static String TAG = "Listado";
     private RecyclerView rvProducts;
     private ProductAdapter adapter;
     private ApiService apiService;
     private List<Product> products = new ArrayList<>();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,16 +37,15 @@ public class ProductsActivity extends AppCompatActivity {
         loadProducts();
     }
 
-    private void loadProducts(){
+    private void loadProducts() {
         apiService.getProducts().enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                if(response.isSuccessful()){
-                    products.clear(); //Limpiar productos registrados
+                if (response.isSuccessful()) {
+                    products.clear();
                     products.addAll(response.body());
                     adapter.notifyDataSetChanged();
-                }
-                else{
+                } else {
                     Toast.makeText(ProductsActivity.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -71,11 +56,4 @@ public class ProductsActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadProducts();
-    }
-
 }

@@ -1,11 +1,8 @@
 package com.example.tienda.services.network;
 
 import com.example.tienda.models.Product;
-
 import java.util.List;
-
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -22,12 +19,11 @@ public interface ApiService {
     Call<Product> getProductById(@Path("id") String id);
 
     @POST("/products")
-    Call<Product> createProduct(@Body Product product);
+    Call<Product> createProduct(Product product);
 
     @PUT("/products/{id}")
-    Call<Product> updateProduct(@Path("id") String id, @Body Product product);
+    Call<Product> updateProduct(@Path("id") String id, Product product);
 
     @DELETE("/products/{id}")
     Call<Void> deleteProduct(@Path("id") String id);
-
 }
